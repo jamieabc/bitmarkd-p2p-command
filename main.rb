@@ -49,8 +49,8 @@ end
 
 s = open_sock(address)
 
-s.send_string "local", ZMQ::SNDMORE
-s.send_string "I", 0
+s.send_string ("local", ZMQ::SNDMORE)
+s.send_string ("I", 0)
 msgs = []
-s.recv_strings msgs
+s.recv_strings(msgs)
 puts "msg: #{msgs}"
