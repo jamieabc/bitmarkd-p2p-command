@@ -20,19 +20,19 @@ def socket_tcp_keepalive(socket)
   socket.setsockopt(ZMQ::TCP_KEEPALIVE_INTVL, 60)
 end
 
-def socket_encryption(socket)
+def socket_encryption(socket, server_public_key, client_public_key, client_private_key)
   socket.setsockopt(ZMQ::CURVE_SERVER, 0)
-  socket.setsockopt(ZMQ::CURVE_SERVERKEY, ["683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171"].pack("H*").to_s)
-  socket.setsockopt(ZMQ::CURVE_PUBLICKEY, ["4ef2be6a85f606efc5a137b9e79c09b5798c7d6c8e6136be35fcce946c704d38"].pack("H*").to_s)
-  socket.setsockopt(ZMQ::CURVE_SECRETKEY, ["7e596e1d5b6563487fef18ab5a8eef1fdd48f3cad3e55d3e4c958df59f43008c"].pack("H*").to_s)
+  socket.setsockopt(ZMQ::CURVE_SERVERKEY, [server_public_key].pack("H*").to_s)
+  socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [client_public_key].pack("H*").to_s)
+  socket.setsockopt(ZMQ::CURVE_SECRETKEY, [client_private_key].pack("H*").to_s)
 end
 
 def random_identity
   (0..31).map { rand(69..91).chr }.join
 end
 
-def socket_option(zmq_socket)
-  socket_encryption(zmq_socket)
+def socket_option(zmq_socket, server_public_key, client_public_key, client_private_key)
+  socket_encryption(zmq_socket, server_public_key, client_public_key, client_private_key)
   zmq_socket.setsockopt(ZMQ::IMMEDIATE, 1)
   zmq_socket.setsockopt(ZMQ::IDENTITY, random_identity)
   zmq_socket.setsockopt(ZMQ::REQ_CORRELATE, 1)
@@ -42,9 +42,9 @@ def socket_option(zmq_socket)
   zmq_socket.setsockopt(ZMQ::MAXMSGSIZE, 5_000_000)
 end
 
-def open_sock(address)
+def open_sock(address, server_public_key, client_public_key, client_private_key)
   s = open_zmq_sock
-  socket_option(s)
+  socket_option(s, server_public_key, client_public_key, client_private_key)
   s.connect(address)
   s
 end
@@ -56,7 +56,7 @@ end
 sockets = []
 
 yml_config["nodes"].each do |n|
-  sockets << open_sock(connection(n["ip4"], n["port"]))
+  sockets << open_sock(connection(n["ip4"], n["port"]), n["public_key"], yml_config["public_key"], yml_config["private_key"])
 end
 
 def parse_response(resp)
