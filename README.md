@@ -1,0 +1,1 @@
+This repository is for sending command to bitmarkd node
