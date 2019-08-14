@@ -15,7 +15,7 @@ sockets = []
 
 puts "create zmq sockets"
 yml_config["nodes"].each do |n|
-  sockets << Socket.new(ip: n["ip4"], port: n["port"], remote_public_key: n["public_key"], name: n["name"])
+  sockets << Socket.new(n)
 end
 
 def parse_response(name, resp)

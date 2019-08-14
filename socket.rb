@@ -2,18 +2,19 @@
 
 # Socket is for abstraction of zeromq socket
 class Socket
-  attr_reader :remote_public_key, :ip, :port, :socket, :name
+  attr_reader :client_public_key, :ip, :port, :socket, :name, :chain
 
-  @@public_key = ""
-  @@private_key = ""
+  @@client_public_key = ""
+  @@client_private_key = ""
 
-  def initialize(ip:, port:, remote_public_key:, name:)
-    set_connection(ip, port)
-    @remote_public_key = remote_public_key
+  def initialize(hsh = {})
+    set_connection(hsh.fetch("ip4"), hsh.fetch("port"))
+    @client_public_key = hsh.fetch("public_key")
     @socket = create_zmq_socket
     socket_option
     socket.connect(connection)
-    @name = name
+    @name = hsh.fetch("name")
+    @chain = hsh.fetch("chain")
   end
 
   def connection
@@ -21,10 +22,12 @@ class Socket
   end
 
   def send(str, zmq_flag)
+    check_client_keys
     socket.send_string(str, zmq_flag)
   end
 
   def receive
+    check_client_keys
     messages = []
     socket.recv_strings(messages)
     messages
@@ -35,11 +38,15 @@ class Socket
   end
 
   def self.set_keys(public, private)
-    @@public_key = public
-    @@private_key = private
+    @@client_public_key = public
+    @@client_private_key = private
   end
 
   private
+
+  def check_client_keys
+    raise "Error no client key" if @@client_private_key.empty? || @@client_public_key.empty?
+  end
 
   def create_zmq_socket
     ctx = ZMQ::Context.new
@@ -67,9 +74,9 @@ class Socket
 
   def set_socket_encryption
     socket.setsockopt(ZMQ::CURVE_SERVER, 0)
-    socket.setsockopt(ZMQ::CURVE_SERVERKEY, [remote_public_key].pack("H*").to_s)
-    socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [@@public_key].pack("H*").to_s)
-    socket.setsockopt(ZMQ::CURVE_SECRETKEY, [@@private_key].pack("H*").to_s)
+    socket.setsockopt(ZMQ::CURVE_SERVERKEY, [client_public_key].pack("H*").to_s)
+    socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [@@client_public_key].pack("H*").to_s)
+    socket.setsockopt(ZMQ::CURVE_SECRETKEY, [@@client_private_key].pack("H*").to_s)
   end
 
   def socket_tcp_keepalive
