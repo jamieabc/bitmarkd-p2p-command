@@ -1,0 +1,15 @@
+---
+nodes:
+  - name: node-a1-test
+    ip4: 1.2.3.4
+    port: 2136
+    public_key: xyz
+    chain: testing
+  - name: node-a2-test
+    ip4: 5.6.7.8
+    port: 2136
+    public_key: ijk
+    chain: testing
+
+public_key: abcdefg
+private_key: hijklmn
