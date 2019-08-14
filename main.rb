@@ -15,7 +15,7 @@ sockets = []
 
 puts "create zmq sockets"
 yml_config["nodes"].each do |n|
-  sockets << Socket.new(ip: n["ip4"], port: n["port"], remote_public_key: n["public_key"], name: n["name"])
+  sockets << Socket.new(n)
 end
 
 def parse_response(name, resp)
@@ -25,7 +25,7 @@ end
 
 puts "query bitmarkd info"
 sockets.each do |s|
-  s.send("testing", ZMQ::SNDMORE)
+  s.send_chain
   s.send("I", 0)
   msgs = s.receive
   parse_response(s.name, msgs[1])
