@@ -21,6 +21,11 @@ class Socket
     "tcp://#{ip}:#{port}"
   end
 
+  def send_chain
+    check_client_keys
+    socket.send_string(chain, ZMQ::SNDMORE)
+  end
+
   def send(str, zmq_flag)
     check_client_keys
     socket.send_string(str, zmq_flag)

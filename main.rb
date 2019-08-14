@@ -25,7 +25,7 @@ end
 
 puts "query bitmarkd info"
 sockets.each do |s|
-  s.send("testing", ZMQ::SNDMORE)
+  s.send_chain
   s.send("I", 0)
   msgs = s.receive
   parse_response(s.name, msgs[1])
