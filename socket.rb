@@ -2,17 +2,18 @@
 
 # Socket is for abstraction of zeromq socket
 class Socket
-  attr_reader :remote_public_key, :ip, :port, :socket
+  attr_reader :remote_public_key, :ip, :port, :socket, :name
 
   @@public_key = ""
   @@private_key = ""
 
-  def initialize(ip, port, remote_public_key)
+  def initialize(ip:, port:, remote_public_key:, name:)
     set_connection(ip, port)
     @remote_public_key = remote_public_key
     @socket = create_zmq_socket
     socket_option
     socket.connect(connection)
+    @name = name
   end
 
   def connection
