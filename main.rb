@@ -3,7 +3,7 @@
 require "ffi-rzmq"
 require "json"
 require "yaml"
-require_relative 'zmq_socket'
+Dir[File.join(__dir__, 'command', '*.rb')].each { |file| require file }
 
 config_file = "config.yml"
 
@@ -11,11 +11,11 @@ yml_config = YAML.load_file(config_file)
 
 ZmqSocket.set_keys(yml_config["public_key"], yml_config["private_key"])
 
-sockets = []
+clients = []
 
-puts "create zmq sockets"
+puts "create zmq clients"
 yml_config["nodes"].each do |n|
-  sockets << ZmqSocket.new(n)
+  clients << Command::Base.new(n)
 end
 
 def parse_response(name, resp)
@@ -24,11 +24,7 @@ def parse_response(name, resp)
 end
 
 puts "query bitmarkd info"
-sockets.each do |s|
-  s.send_chain
-  s.send("I", 0)
-  msgs = s.receive
-  parse_response(s.name, msgs[1])
+clients.each do |c|
+  c.info
+  c.close
 end
-
-sockets.each(&:close)

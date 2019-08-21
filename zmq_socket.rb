@@ -2,7 +2,7 @@
 
 # ZmqSocket is for abstraction of zeromq socket
 class ZmqSocket
-  attr_reader :client_public_key, :ip, :port, :socket, :name, :chain
+  attr_reader :client_public_key, :ip, :port, :socket, :name
 
   @@client_public_key = ""
   @@client_private_key = ""
@@ -14,14 +14,13 @@ class ZmqSocket
     socket_option
     socket.connect(connection)
     @name = hsh.fetch("name")
-    @chain = hsh.fetch("chain")
   end
 
   def connection
     "tcp://#{ip}:#{port}"
   end
 
-  def send_chain
+  def send_chain(chain)
     check_client_keys
     socket.send_string(chain, ZMQ::SNDMORE)
   end
