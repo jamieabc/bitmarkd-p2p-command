@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Socket is for abstraction of zeromq socket
-class Socket
+# ZmqSocket is for abstraction of zeromq socket
+class ZmqSocket
   attr_reader :client_public_key, :ip, :port, :socket, :name, :chain
 
   @@client_public_key = ""
