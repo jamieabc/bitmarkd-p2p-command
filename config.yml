@@ -1,0 +1,56 @@
+---
+nodes:
+  - name: node-a1-test
+    ip4: 13.230.172.138
+    port: 2136
+    public_key: b30126ce63a92ba74a1334d091cbc4d4e1f68f4a81bca8b04b9b32007bf1d31e
+    chain: testing
+  - name: node-a2-test
+    ip4: 13.112.35.158
+    port: 2136
+    public_key: 57e97fb1e3b7bac43e170f79a77ea0f53e4b528a145d5a0d4693af8dba60181a
+    chain: testing
+  - name: node-a3-test
+    ip4: 52.194.238.206
+    port: 2136
+    public_key: dce03fda9d2cc59551c5f3f706423653e3b4d192817def978aef28f0fe418471
+    chain: testing
+  - name: node-a4-test
+    ip4: 54.95.248.16
+    port: 2136
+    public_key: 713d6163ed0447799bcf5d671011c86de51e42d996999dd35ce93bcdc5684b1a
+    chain: testing
+  - name: node-d1-test
+    ip4: 128.199.89.154
+    port: 2136
+    public_key: c1fb349f2d59831456d712c16608c33afcb28257c0f8c7f99f6bf87f68bea364
+    chain: testing
+  - name: node-d2-test
+    ip4: 178.128.217.151
+    port: 2136
+    public_key: 683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171
+    chain: testing
+  - name: node-d3-test
+    ip4: 139.59.224.237
+    port: 2136
+    public_key: 8c4b3f6075c68b89c3ef3e2f2a1df8fdf728189d58996b45bdf418f71aef2441
+    chain: testing
+  - name: node-t1-test
+    ip4: 172.24.130.101
+    port: 2136
+    public_key: a07f9dcd31506bc167ec77f537a4946ead22c64a04d5ebae21bb454617725a07
+    chain: testing
+  - name: node-t2-test
+    ip4: 172.24.130.102
+    port: 2136
+    public_key: 93c57426b33f5f663e0ba2a2767b2ba8eb486531f5bef1617eb2e166e7f9ac21
+    chain: testing
+  - name: node-t3-test
+    ip4: 172.24.130.103
+    port: 2136
+    public_key: 7c380605d36a3d0643ffd60cd73bc074328a6acd0b6bfaaa2e50334e708bb23d
+    chain: testing
+
+
+public_key: 4ef2be6a85f606efc5a137b9e79c09b5798c7d6c8e6136be35fcce946c704d38
+private_key: 7e596e1d5b6563487fef18ab5a8eef1fdd48f3cad3e55d3e4c958df59f43008c
