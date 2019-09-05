@@ -1,4 +1,4 @@
-require "pry"
+require 'pry'
 
 module Command
   # Info - get bitmarkd info
@@ -18,7 +18,7 @@ module Command
     end
 
     def info_prefix
-      "I"
+      'I'
     end
   end
 end
