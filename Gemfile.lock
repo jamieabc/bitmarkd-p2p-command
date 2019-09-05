@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
+    colorize (0.8.1)
     ffi (1.11.1)
     ffi-rzmq (2.0.7)
       ffi-rzmq-core (>= 1.0.7)
@@ -16,6 +17,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   ffi-rzmq
   pry
 

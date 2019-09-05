@@ -25,6 +25,6 @@ end
 
 puts 'query bitmarkd info'
 clients.each do |c|
-  c.info
+  puts "#{c.info} #{c.height}"
   c.close
 end

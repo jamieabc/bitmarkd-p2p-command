@@ -1,20 +1,26 @@
+# frozen_string_literal: true
+
 require 'pry'
+require 'colorize'
 
 module Command
-  # Info - get bitmarkd info
+  # info - get bitmarkd info
   class Base
     def info
       send_chain
       send_message(info_prefix)
       msgs = receive_message
-      parse_message(client.name, msgs[1])
+      parse_info(client.name, msgs[1])
     end
 
     private
 
-    def parse_message(name, resp)
+    def parse_info(name, resp)
       hsh = JSON.parse(resp).to_h
-      puts "#{name} response: #{hsh}"
+      version = hsh['version'].ljust(10)
+      chain = hsh['chain'].ljust(8).colorize(:green)
+      normal = hsh['normal'] ? 'N'.colorize(:blue) : 'R'.colorize(:blue)
+      "#{name.ljust(8)} #{version} #{chain} #{normal}"
     end
 
     def info_prefix
