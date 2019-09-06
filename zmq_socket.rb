@@ -71,9 +71,8 @@ class ZmqSocket
     set_socket_encryption
     socket.setsockopt(ZMQ::IMMEDIATE, 1)
     socket.setsockopt(ZMQ::IDENTITY, random_identity)
-    socket.setsockopt(ZMQ::REQ_CORRELATE, 1)
-    socket.setsockopt(ZMQ::REQ_RELAXED, 1)
     socket_tcp_keepalive
+    socket_timeout
     socket.setsockopt(ZMQ::MAXMSGSIZE, 5_000_000)
   end
 
@@ -82,6 +81,17 @@ class ZmqSocket
     socket.setsockopt(ZMQ::CURVE_SERVERKEY, [client_public_key].pack('H*').to_s)
     socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [@@client_public_key].pack('H*').to_s)
     socket.setsockopt(ZMQ::CURVE_SECRETKEY, [@@client_private_key].pack('H*').to_s)
+    socket.setsockopt(ZMQ::REQ_CORRELATE, 1)
+    socket.setsockopt(ZMQ::REQ_RELAXED, 1)
+  end
+
+  def socket_timeout
+    socket.setsockopt(ZMQ::SNDTIMEO, timeout_millisecond)
+    socket.setsockopt(ZMQ::RCVTIMEO, timeout_millisecond)
+  end
+
+  def timeout_millisecond
+    3000
   end
 
   def socket_tcp_keepalive
