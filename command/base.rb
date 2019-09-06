@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../zmq_socket'
 
 module Command
@@ -6,11 +8,11 @@ module Command
     attr_accessor :client, :chain
 
     def initialize(hsh = {})
-      raise "invalid chain" if hsh.fetch("chain").empty?
-      raise "invalid ip" if hsh.fetch("ip4").empty?
-      raise "invalid port" if hsh.fetch("port").zero?
+      raise 'invalid chain' if hsh.fetch('chain').empty?
+      raise 'invalid ip' if hsh.fetch('ip4').empty?
+      raise 'invalid port' if hsh.fetch('port').zero?
 
-      @chain = hsh.fetch("chain")
+      @chain = hsh.fetch('chain')
       @client = ZmqSocket.new(hsh)
     end
 
