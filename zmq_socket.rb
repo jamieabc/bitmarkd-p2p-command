@@ -4,16 +4,16 @@
 class ZmqSocket
   attr_reader :client_public_key, :ip, :port, :socket, :name
 
-  @@client_public_key = ""
-  @@client_private_key = ""
+  @@client_public_key = ''
+  @@client_private_key = ''
 
   def initialize(hsh = {})
-    set_connection(hsh.fetch("ip4"), hsh.fetch("port"))
-    @client_public_key = hsh.fetch("public_key")
+    set_connection(hsh.fetch('ip4'), hsh.fetch('port'))
+    @client_public_key = hsh.fetch('public_key')
     @socket = create_zmq_socket
     socket_option
     socket.connect(connection)
-    @name = hsh.fetch("name")
+    @name = hsh.fetch('name')
   end
 
   def connection
@@ -49,7 +49,7 @@ class ZmqSocket
   private
 
   def check_client_keys
-    raise "Error no client key" if @@client_private_key.empty? || @@client_public_key.empty?
+    raise 'Error no client key' if @@client_private_key.empty? || @@client_public_key.empty?
   end
 
   def create_zmq_socket
@@ -78,9 +78,9 @@ class ZmqSocket
 
   def set_socket_encryption
     socket.setsockopt(ZMQ::CURVE_SERVER, 0)
-    socket.setsockopt(ZMQ::CURVE_SERVERKEY, [client_public_key].pack("H*").to_s)
-    socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [@@client_public_key].pack("H*").to_s)
-    socket.setsockopt(ZMQ::CURVE_SECRETKEY, [@@client_private_key].pack("H*").to_s)
+    socket.setsockopt(ZMQ::CURVE_SERVERKEY, [client_public_key].pack('H*').to_s)
+    socket.setsockopt(ZMQ::CURVE_PUBLICKEY, [@@client_public_key].pack('H*').to_s)
+    socket.setsockopt(ZMQ::CURVE_SECRETKEY, [@@client_private_key].pack('H*').to_s)
   end
 
   def socket_tcp_keepalive
