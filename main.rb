@@ -12,7 +12,6 @@ ZmqSocket.set_keys(yml_config['public_key'], yml_config['private_key'])
 
 clients = []
 
-puts 'create zmq clients'
 yml_config['nodes'].each do |n|
   clients << Command::Base.new(n)
 end
@@ -22,7 +21,6 @@ def parse_response(name, resp)
   puts "#{name} response: #{hsh}"
 end
 
-puts 'query bitmarkd info'
 clients.each do |c|
   info = c.info
   height = c.height
