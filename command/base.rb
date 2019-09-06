@@ -26,8 +26,12 @@ module Command
       client.send_chain(chain)
     end
 
-    def send_message(arg)
+    def send_final_message(arg)
       client.send(arg, 0)
+    end
+
+    def send_message_and_more(arg)
+      client.send(arg, ZMQ::SNDMORE)
     end
 
     def receive_message

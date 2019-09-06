@@ -8,7 +8,7 @@ module Command
   class Base
     def info
       send_chain
-      send_message(info_prefix)
+      send_final_message(info_prefix)
       msgs = receive_message
       parse_info(client.name, msgs[1])
     end
@@ -17,14 +17,26 @@ module Command
 
     def parse_info(name, resp)
       hsh = JSON.parse(resp).to_h
-      version = hsh['version'].ljust(10)
-      chain = hsh['chain'].ljust(8).colorize(:green)
-      normal = hsh['normal'] ? 'N'.colorize(:blue) : 'R'.colorize(:blue)
-      "#{name.ljust(8)} #{version} #{chain} #{normal}"
+      version = hsh['version'].ljust(version_length)
+      chain = hsh['chain'].ljust(chain_length)
+      normal = hsh['normal'] ? 'N'.colorize(:blue) : 'R'.colorize(:red)
+      "#{name.ljust(name_length)} #{version} #{chain} #{normal}"
     end
 
     def info_prefix
       'I'
+    end
+
+    def version_length
+      15
+    end
+
+    def chain_length
+      8
+    end
+
+    def name_length
+      8
     end
   end
 end

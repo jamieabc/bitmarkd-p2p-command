@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'ffi-rzmq'
 require 'json'
 require 'yaml'
 Dir[File.join(__dir__, 'command', '*.rb')].each { |file| require file }
@@ -25,6 +24,9 @@ end
 
 puts 'query bitmarkd info'
 clients.each do |c|
-  puts "#{c.info} #{c.height}"
+  info = c.info
+  height = c.height
+  block_hash = c.block_hash(height)
+  puts "#{info} #{height} #{block_hash}"
   c.close
 end

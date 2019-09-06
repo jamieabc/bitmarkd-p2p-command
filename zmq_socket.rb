@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'ffi-rzmq'
 
 # ZmqSocket is for abstraction of zeromq socket
 class ZmqSocket
