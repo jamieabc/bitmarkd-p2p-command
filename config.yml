@@ -20,6 +20,28 @@ nodes:
     port: 2136
     public_key: 713d6163ed0447799bcf5d671011c86de51e42d996999dd35ce93bcdc5684b1a
     chain: testing
+  - name: d1t
+    ip4: 128.199.89.154
+    port: 2136
+    public_key: c1fb349f2d59831456d712c16608c33afcb28257c0f8c7f99f6bf87f68bea364
+    chain: testing
+  - name: d2t
+    ip4: 139.59.224.237
+    port: 2136
+    public_key: 8c4b3f6075c68b89c3ef3e2f2a1df8fdf728189d58996b45bdf418f71aef2441
+    chain: testing
+  - name: d3t
+    ip4: 178.128.82.12
+    port: 2136
+    public_key: d41e9fa3b1ad6fc3bb1239b5c0077e0c971b21e81168dd6212b83afdc7b3c710
+    chain: testing
+  - name: d4t
+    ip4: 178.128.217.151
+    port: 2136
+    public_key: 683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171
+    chain: testing
+
+
   # - name: local
   #   ip4: 127.0.0.1
   #   port: 2136
