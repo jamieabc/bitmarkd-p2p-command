@@ -2,49 +2,49 @@
 nodes:
   - name: a1t
     ip4: 13.230.172.138
-    port: 2136
+    zmq_port: 2136
     public_key: b30126ce63a92ba74a1334d091cbc4d4e1f68f4a81bca8b04b9b32007bf1d31e
     chain: testing
   - name: a2t
     ip4: 13.112.35.158
-    port: 2136
+    zmq_port: 2136
     public_key: 57e97fb1e3b7bac43e170f79a77ea0f53e4b528a145d5a0d4693af8dba60181a
     chain: testing
   - name: a3t
     ip4: 52.194.238.206
-    port: 2136
+    zmq_port: 2136
     public_key: dce03fda9d2cc59551c5f3f706423653e3b4d192817def978aef28f0fe418471
     chain: testing
   - name: a4t
     ip4: 54.95.248.16
-    port: 2136
+    zmq_port: 2136
     public_key: 713d6163ed0447799bcf5d671011c86de51e42d996999dd35ce93bcdc5684b1a
     chain: testing
   - name: d1t
     ip4: 128.199.89.154
-    port: 2136
+    zmq_port: 2136
     public_key: c1fb349f2d59831456d712c16608c33afcb28257c0f8c7f99f6bf87f68bea364
     chain: testing
   - name: d2t
     ip4: 139.59.224.237
-    port: 2136
+    zmq_port: 2136
     public_key: 8c4b3f6075c68b89c3ef3e2f2a1df8fdf728189d58996b45bdf418f71aef2441
     chain: testing
   - name: d3t
     ip4: 178.128.82.12
-    port: 2136
+    zmq_port: 2136
     public_key: d41e9fa3b1ad6fc3bb1239b5c0077e0c971b21e81168dd6212b83afdc7b3c710
     chain: testing
   - name: d4t
     ip4: 178.128.217.151
-    port: 2136
+    zmq_port: 2136
     public_key: 683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171
     chain: testing
 
 
   # - name: local
   #   ip4: 127.0.0.1
-  #   port: 2136
+  #   zmq_port: 2136
   #   public_key: 71e33ce07127146f5a2b9e155e8e26c9d934545129cb5c5349500d88e8a85837
   #   chain: testing
 

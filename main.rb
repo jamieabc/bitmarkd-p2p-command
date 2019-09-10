@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'json'
 require 'yaml'
 Dir[File.join(__dir__, 'command', '*.rb')].each { |file| require file }
 

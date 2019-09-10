@@ -9,7 +9,7 @@ class ZmqSocket
   @@client_private_key = ''
 
   def initialize(hsh = {})
-    set_connection(hsh.fetch('ip4'), hsh.fetch('port'))
+    set_connection(hsh.fetch('ip4'), hsh.fetch('zmq_port'))
     @client_public_key = hsh.fetch('public_key')
     @socket = create_zmq_socket
     socket_option
