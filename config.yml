@@ -40,7 +40,26 @@ nodes:
     zmq_port: 2136
     public_key: 683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171
     chain: testing
-
+  # - name: t1t
+  #   ip4: 172.24.130.10
+  #   zmq_port: 2136
+  #   public_key:
+  #   chain: testing
+  # - name: t2t
+  #   ip4: 172.24.130.102
+  #   zmq_port: 2136
+  #   public_key:
+  #   chain: testing
+  # - name: t3t
+  #   ip4: 172.24.130.103
+  #   zmq_port: 2136
+  #   public_key:
+  #   chain: testing
+  # - name: t4t
+  #   ip4: 172.24.130.104
+  #   zmq_port: 2136
+  #   public_key:
+  #   chain: testing
 
   # - name: local
   #   ip4: 127.0.0.1
