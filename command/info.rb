@@ -19,7 +19,6 @@ module Command
         result = hsh['result']
         version = result['version'].ljust(version_length)
         hash_rate = result['hashrate']
-        difficulty = result['difficulty']
         chain = result['chain'].ljust(chain_length)
         pending_count = result['transactionCounters']['pending'].to_s.ljust(5)
         verified_count = result['transactionCounters']['verified'].to_s.ljust(5)
