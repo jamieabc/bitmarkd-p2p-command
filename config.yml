@@ -48,24 +48,28 @@ nodes:
     ssl_port: 2130
     public_key: 683054c7d2a9eca754fb7e20c3c73ed5abeaaccf075b2a5fd7dda9bb49003171
     chain: testing
-  # - name: t1t
-  #   ip4: 172.24.130.10
-  #   zmq_port: 2136
-  #   public_key:
-  #   chain: testing
+  - name: t1t
+    ip4: 172.24.130.101
+    zmq_port: 2136
+    ssl_port: 2130
+    public_key: a07f9dcd31506bc167ec77f537a4946ead22c64a04d5ebae21bb454617725a07
+    chain: testing
   # - name: t2t
   #   ip4: 172.24.130.102
   #   zmq_port: 2136
+  #   ssl_port: 2130
   #   public_key:
   #   chain: testing
   # - name: t3t
   #   ip4: 172.24.130.103
   #   zmq_port: 2136
+  #   ssl_port: 2130
   #   public_key:
   #   chain: testing
   # - name: t4t
   #   ip4: 172.24.130.104
   #   zmq_port: 2136
+  #   ssl_port: 2130
   #   public_key:
   #   chain: testing
 
