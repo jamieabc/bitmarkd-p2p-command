@@ -7,20 +7,30 @@ module Command
   # info - get bitmarkd info
   class Base
     def info
-      send_chain
-      send_final_message(info_prefix)
-      msgs = receive_message
-      parse_info(client.name, msgs[1])
+      parse_info(rpc.info)
     end
 
     private
 
-    def parse_info(name, resp)
-      hsh = JSON.parse(resp).to_h
-      version = hsh['version'].ljust(version_length)
-      chain = hsh['chain'].ljust(chain_length)
-      normal = hsh['normal'] ? 'N'.colorize(:blue) : 'R'.colorize(:red)
-      "#{name.ljust(name_length)} #{version} #{chain} #{normal}"
+    def parse_info (json)
+      hsh = json.to_h
+      err = hsh['error']
+      if err.nil?
+        result = hsh['result']
+        version = result['version'].ljust(version_length)
+        hash_rate = result['hashrate']
+        difficulty = result['difficulty']
+        chain = result['chain'].ljust(chain_length)
+        pending_count = result['transactionCounters']['pending'].to_s.ljust(5)
+        verified_count = result['transactionCounters']['verified'].to_s.ljust(5)
+
+        status = 'N'.colorize(:blue)
+        status = 'R'.colorize(:red) if result['mode'].downcase != 'normal'
+        "#{name.ljust(name_length)} #{version} #{chain} #{status} p:#{pending_count} v:#{verified_count} #{hash_rate}"
+      else
+        puts "get rpc info with error: #{err}"
+        ""
+      end
     end
 
     def info_prefix
@@ -28,7 +38,7 @@ module Command
     end
 
     def version_length
-      15
+      10
     end
 
     def chain_length
@@ -36,7 +46,7 @@ module Command
     end
 
     def name_length
-      8
+      5
     end
   end
 end
