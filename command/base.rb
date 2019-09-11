@@ -10,11 +10,18 @@ module Command
     attr_accessor :zmq, :chain, :rpc, :name
 
     def initialize(hsh = {})
+      validate(hsh)
+      extract_params(hsh)
+    end
+
+    def validate(hsh = {})
       raise 'invalid chain' if hsh.fetch('chain').empty?
       raise 'invalid ip' if hsh.fetch('ip4').empty?
       raise 'invalid port' if hsh.fetch('zmq_port').zero?
       raise 'invalid name' if hsh.fetch('name').empty?
+    end
 
+    def extract_params(hsh)
       @chain = hsh.fetch('chain')
       @name = hsh.fetch('name')
       @zmq = ZmqSocket.new(hsh)
