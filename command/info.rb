@@ -17,10 +17,10 @@ module Command
       err = hsh['error']
       if err.nil?
         result = hsh['result']
-        version = result['version'].ljust(version_length)
+        version = result['version'][0..version_length-1].ljust(version_length)
         hash_rate = result['hashrate']
         difficulty = result['difficulty']
-        chain = result['chain'].ljust(chain_length)
+        chain = result['chain'][0..chain_length-1].ljust(chain_length)
         pending_count = result['transactionCounters']['pending'].to_s.ljust(5)
         verified_count = result['transactionCounters']['verified'].to_s.ljust(5)
 

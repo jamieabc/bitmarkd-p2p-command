@@ -16,10 +16,10 @@ class RPCSocket
     ctx.set_params(verify_mode: OpenSSL::SSL::VERIFY_NONE)
     @rpc = OpenSSL::SSL::SSLSocket.new(tpc_socket, ctx)
     rpc.sync_close = true
-    rpc.connect
   end
 
   def info
+    rpc.connect
     params = JSON.dump(
       method: 'Node.Info',
       params: [{}],
