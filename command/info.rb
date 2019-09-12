@@ -19,14 +19,14 @@ module Command
         result = hsh['result']
         version = result['version'][0..version_length-1].ljust(version_length)
         hash_rate = result['hashrate']
-        difficulty = result['difficulty']
+        difficulty = result['difficulty'].to_s[0..difficulty_length-1].ljust(difficulty_length)
         chain = result['chain'][0..chain_length-1].ljust(chain_length)
         pending_count = result['transactionCounters']['pending'].to_s.ljust(5)
         verified_count = result['transactionCounters']['verified'].to_s.ljust(5)
 
         status = 'N'.colorize(:blue)
         status = 'R'.colorize(:red) if result['mode'].downcase != 'normal'
-        "#{name.ljust(name_length)} #{version} #{chain} #{status} p:#{pending_count} v:#{verified_count} #{hash_rate}"
+        "#{name.ljust(name_length)} #{version} #{chain} #{status} p:#{pending_count} v:#{verified_count} #{hash_rate} #{difficulty}"
       else
         puts "get rpc info with error: #{err}"
         ""
@@ -47,6 +47,10 @@ module Command
 
     def name_length
       5
+    end
+
+    def difficulty_length
+      4
     end
   end
 end
