@@ -5,10 +5,12 @@
       <w>aceec</w>
       <w>bitmarkd</w>
       <w>fcce</w>
+      <w>getaddrinfo</w>
       <w>hashrate</w>
       <w>intvl</w>
       <w>maxmsgsize</w>
       <w>msgs</w>
+      <w>optval</w>
       <w>publickey</w>
       <w>recvmsgs</w>
       <w>resultcode</w>
@@ -16,6 +18,7 @@
       <w>secretkey</w>
       <w>serverkey</w>
       <w>sndmore</w>
+      <w>usecs</w>
       <w>zeromq</w>
     </words>
   </dictionary>
