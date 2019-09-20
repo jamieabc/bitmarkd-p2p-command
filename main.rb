@@ -17,9 +17,11 @@ yml_config['nodes'].each do |n|
 end
 
 clients.each do |c|
-  info = c.info
-  height = c.height
-  block_hash = c.block_hash(height)
-  puts "#{info} #{height} #{block_hash}"
+  info_str, mode = c.info
+  if mode == 'normal'
+    height = c.height
+    block_hash = c.block_hash(height) if mode == 'normal'
+  end
+  puts "#{info_str} #{height} #{block_hash}"
   c.close
 end

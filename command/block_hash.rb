@@ -10,7 +10,7 @@ module Command
       send_message_and_more(block_hash_prefix)
       send_final_message([block_number.to_i].pack('J>'))
       msgs = receive_message
-      parse_hash(msgs[1])
+      parse_hash(msgs[1]) if msgs.length == 2
     end
 
     def parse_hash(resp)

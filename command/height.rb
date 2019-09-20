@@ -7,7 +7,7 @@ module Command
       send_chain
       send_final_message(height_prefix)
       msgs = receive_message
-      parse_height(msgs[1])
+      parse_height(msgs[1]) if msgs.length == 2
     end
 
     def parse_height(resp)

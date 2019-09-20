@@ -7,13 +7,12 @@ module Command
   # info - get bitmarkd info
   class Base
     def info
-      parse_info(rpc.info)
+      parse_info(rpc.info.to_h)
     end
 
     private
 
-    def parse_info (json)
-      hsh = json.to_h
+    def parse_info (hsh)
       err = hsh['error']
       if err.nil?
         result = hsh['result']
@@ -26,7 +25,7 @@ module Command
 
         status = 'N'.colorize(:blue)
         status = 'R'.colorize(:red) if result['mode'].downcase != 'normal'
-        "#{name.ljust(name_length)} #{version} #{chain} #{status} p:#{pending_count} v:#{verified_count} #{hash_rate} #{difficulty}"
+        return "#{name.ljust(name_length)} #{version} #{chain} #{status} p:#{pending_count} v:#{verified_count} #{hash_rate} #{difficulty}", result['mode'].downcase
       else
         puts "get rpc info with error: #{err}"
         ""
