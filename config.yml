@@ -7,16 +7,16 @@ nodes:
     public_key: 57e97fb1e3b7bac43e170f79a77ea0f53e4b528a145d5a0d4693af8dba60181a
     chain: testing
   - name: a2t
-    ip4: 18.182.79.199
-    zmq_port: 2136
-    ssl_port: 2130
-    public_key: b30126ce63a92ba74a1334d091cbc4d4e1f68f4a81bca8b04b9b32007bf1d31e
-    chain: testing
-  - name: a3t
     ip4: 3.114.110.60
     zmq_port: 2136
     ssl_port: 2130
     public_key: dce03fda9d2cc59551c5f3f706423653e3b4d192817def978aef28f0fe418471
+    chain: testing
+  - name: a3t
+    ip4: 18.182.79.199
+    zmq_port: 2136
+    ssl_port: 2130
+    public_key: b30126ce63a92ba74a1334d091cbc4d4e1f68f4a81bca8b04b9b32007bf1d31e
     chain: testing
   - name: a4t
     ip4: 54.64.209.213
