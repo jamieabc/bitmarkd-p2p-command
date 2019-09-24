@@ -20,6 +20,7 @@ clients.each do |c|
   info = c.info
   height = c.height
   block_hash = c.block_hash(height)
-  puts "#{info} #{height} #{block_hash}"
+  header = c.block_header(height)
+  puts "#{info} #{height} #{block_hash} #{header[:time]}"
   c.close
 end
