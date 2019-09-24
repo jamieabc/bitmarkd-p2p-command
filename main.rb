@@ -21,7 +21,8 @@ clients.each do |c|
   if mode == 'normal'
     height = c.height
     block_hash = c.block_hash(height) if mode == 'normal'
+    header = c.block_header(height)
   end
-  puts "#{info_str} #{height} #{block_hash}"
+  puts "#{info_str} #{height} #{block_hash} #{header[:time] if header}"
   c.close
 end
