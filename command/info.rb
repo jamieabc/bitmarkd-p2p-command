@@ -21,8 +21,8 @@ module Command
         hash_rate = result['hashrate']
         difficulty = result['difficulty'].to_s[0..difficulty_length-1].ljust(difficulty_length)
         chain = result['chain'][0..chain_length-1].ljust(chain_length)
-        pending_count = result['transactionCounters']['pending'].to_s.ljust(5)
-        verified_count = result['transactionCounters']['verified'].to_s.ljust(5)
+        pending_count = result['transactionCounters']['pending'].to_s.ljust(transaction_count_length)
+        verified_count = result['transactionCounters']['verified'].to_s.ljust(transaction_count_length)
 
         status = 'N'.colorize(:blue)
         status = 'R'.colorize(:red) if result['mode'].downcase != 'normal'
@@ -50,6 +50,10 @@ module Command
     end
 
     def difficulty_length
+      4
+    end
+
+    def transaction_count_length
       4
     end
   end
