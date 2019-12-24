@@ -1,25 +1,7 @@
 <component name="ProjectDictionaryState">
-  <dictionary name="Aaron">
+  <dictionary name="aaron">
     <words>
-      <w>abeaaccf</w>
-      <w>aceec</w>
-      <w>bitmarkd</w>
-      <w>fcce</w>
-      <w>getaddrinfo</w>
-      <w>hashrate</w>
-      <w>intvl</w>
-      <w>maxmsgsize</w>
-      <w>msgs</w>
-      <w>optval</w>
-      <w>publickey</w>
-      <w>recvmsgs</w>
-      <w>resultcode</w>
-      <w>rzmq</w>
-      <w>secretkey</w>
-      <w>serverkey</w>
-      <w>sndmore</w>
-      <w>usecs</w>
-      <w>zeromq</w>
+      <w>merkle</w>
     </words>
   </dictionary>
 </component>
