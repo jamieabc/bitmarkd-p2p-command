@@ -10,6 +10,8 @@ module Command
       send_message_and_more(block_header_prefix)
       send_final_message([block_number.to_i].pack('J>'))
       msgs = receive_message
+      return if msgs.empty?
+
       parse_header(msgs[1])
     end
 
@@ -25,14 +27,6 @@ module Command
         difficulty: extract_difficulty(unpacked),
         nonce: extract_nonce(unpacked)
       }
-      # puts "version: #{extract_version(unpacked)}"
-      # puts "transaction count: #{extract_transaction_count(unpacked)}"
-      # puts "number: #{extract_block_number(unpacked)}"
-      # puts "prev block: #{extract_prev_block(unpacked)}"
-      # puts "merkle: #{extract_merkle_root(unpacked)}"
-      # puts "time: #{extract_timestamp(unpacked)}"
-      # puts "difficulty: #{extract_difficulty(unpacked)}"
-      # puts "nonce: #{extract_nonce(unpacked)}"
     end
 
     def extract_version(unpacked)
