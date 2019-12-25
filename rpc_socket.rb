@@ -28,7 +28,6 @@ class RPCSocket
 
     rpc.write(params)
     response = rpc.gets
-    close
     JSON.parse(response)
   end
 
