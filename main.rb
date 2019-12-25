@@ -4,7 +4,9 @@ require 'pry'
 require 'yaml'
 Dir[File.join(__dir__, 'command', '*.rb')].each { |file| require file }
 
-config_file = 'config.yml'
+# use input config if exist
+default_config_file = 'config.yml'
+config_file = ARGV.empty? ? default_config_file : ARGV[0]
 
 yml_config = YAML.load_file(config_file)
 
