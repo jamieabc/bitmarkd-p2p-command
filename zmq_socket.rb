@@ -91,6 +91,7 @@ class ZmqSocket
     zmq.setsockopt(ZMQ::RCVTIMEO, timeout_millisecond)
   end
 
+  # seems not working
   def timeout_millisecond
     3000
   end
