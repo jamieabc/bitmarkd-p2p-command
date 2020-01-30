@@ -11,10 +11,10 @@ class RPCSocket
     host = hsh.fetch('ip4')
     port = hsh.fetch('ssl_port')
 
-    tpc_socket = TCPSocket.new(host, port)
+    tcp_socket = TCPSocket.new(host, port)
     ctx = OpenSSL::SSL::SSLContext.new
     ctx.set_params(verify_mode: OpenSSL::SSL::VERIFY_NONE)
-    @rpc = OpenSSL::SSL::SSLSocket.new(tpc_socket, ctx)
+    @rpc = OpenSSL::SSL::SSLSocket.new(tcp_socket, ctx)
     rpc.sync_close = true
   end
 
